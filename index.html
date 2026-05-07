@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy Birthday Mom</title>
+  <style>
+    body {
+  text-align: center;
+  background: url("cake.png") no-repeat center center;
+  background-size: 100% 100%;   /* image को पूरी screen में stretch करेगा */
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* scroll करने पर भी fixed रहेगी */
+  overflow: hidden;
+}
+
+
+    
+    #message { 
+      display: none; 
+      font-size: 32px; 
+      color: purple; 
+      margin-top: 20px; 
+      font-weight: bold;
+      background: linear-gradient(90deg, #ff66cc, #ffff66, #66ffcc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 3s infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: -200px 0; }
+      100% { background-position: 200px 0; }
+    }
+    .falling { 
+      position: fixed; 
+      font-size: 30px; 
+      animation: fall 6s linear infinite; 
+    }
+    @keyframes fall { 
+      to { transform: translateY(100vh); } 
+    }
+  </style>
+</head>
+<body>
+ 
+  <!-- Autoplay music -->
+  <audio id="song" src="meri maa.mp3" autoplay></audio>
+
+  <script>
+    window.onload = function() {
+      document.getElementById("song").play();
+
+      // Flowers rain (more flowers now)
+      for(let i=0; i<50; i++) {
+        let item = document.createElement("div");
+        item.className = "falling";
+        // Random horizontal position
+        item.style.left = Math.random()*100 + "vw";
+        // Random vertical start (कुछ ऊपर, कुछ बीच में)
+        item.style.top = -(Math.random()*200) + "px";
+
+        // अलग-अलग flowers
+        let flowers = ["🌸","🌹","🌻","🌼","💐","🌷","🌺"];
+        item.innerHTML = flowers[Math.floor(Math.random()*flowers.length)];
+
+        document.body.appendChild(item);
+      }
+
+      // Message shimmer दिखाना
+      document.getElementById("message").style.display = "block";
+    }
+  </script>
+
+  <div id="message">Happy Birthday Mom! 💖✨ Wishing you joy, health, and love always.</div>
+</body>
+</html>
+

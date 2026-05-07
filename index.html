@@ -42,8 +42,7 @@
 <body>
  
   <!-- Autoplay music -->
-  <audio id="song" src="https://raw.githubusercontent.com/itskilldev/mama-birthday/main/meri%20maa.mp3
-" autoplay muted></audio>
+  <audio id="song" src="meri maa.mp3"  autoplay muted></audio>
 
   <script>
     window.onload = function() {
@@ -67,6 +66,13 @@
 
       // Message shimmer दिखाना
       document.getElementById("message").style.display = "block";
+    }
+    // User click par audio play
+      document.body.addEventListener("click", function() {
+        let song = document.getElementById("song");
+        song.muted = false;   // unmute
+        song.play();          // play after click
+      });
     }
   </script>
 

@@ -4,16 +4,14 @@
   <title>Happy Birthday Mom</title>
   <style>
     body {
-  text-align: center;
-  background: url("cake.png") no-repeat center center;
-  background-size: 100% 100%;   /* image को पूरी screen में stretch करेगा */
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* scroll करने पर भी fixed रहेगी */
-  overflow: hidden;
-}
+      text-align: center;
+      background: url("cake.png") no-repeat center center;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      overflow: hidden;
+    }
 
-
-    
     #message { 
       display: none; 
       font-size: 32px; 
@@ -41,33 +39,26 @@
 </head>
 <body>
  
-  <!-- Autoplay music -->
-  <audio id="song" src="meri maa.mp3"  autoplay muted></audio>
+  <!-- Autoplay muted (required for browsers) -->
+  <audio id="song" src="meri maa.mp3" autoplay muted></audio>
 
   <script>
     window.onload = function() {
-      document.getElementById("song").play();
-
-      // Flowers rain (more flowers now)
+      // Flowers rain
       for(let i=0; i<50; i++) {
         let item = document.createElement("div");
         item.className = "falling";
-        // Random horizontal position
         item.style.left = Math.random()*100 + "vw";
-        // Random vertical start (कुछ ऊपर, कुछ बीच में)
         item.style.top = -(Math.random()*200) + "px";
-
-        // अलग-अलग flowers
         let flowers = ["🌸","🌹","🌻","🌼","💐","🌷","🌺"];
         item.innerHTML = flowers[Math.floor(Math.random()*flowers.length)];
-
         document.body.appendChild(item);
       }
 
       // Message shimmer दिखाना
       document.getElementById("message").style.display = "block";
-    }
-    // User click par audio play
+
+      // User click par audio play
       document.body.addEventListener("click", function() {
         let song = document.getElementById("song");
         song.muted = false;   // unmute
